@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">DicodingMadeClass</string>
+    <string name="app_name">MySharedPreference</string>
     <string name="name">Name</string>
     <string name="email">Email</string>
     <string name="phone_number">No Handphone</string>
