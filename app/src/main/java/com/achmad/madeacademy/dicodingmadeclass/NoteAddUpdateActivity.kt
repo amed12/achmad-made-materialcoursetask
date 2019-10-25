@@ -122,7 +122,7 @@ class NoteAddUpdateActivity : AppCompatActivity(), View.OnClickListener {
         return dateFormat.format(date)
     }
 
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
         if (isEdit){
             menuInflater.inflate(R.menu.menu_form, menu)
         }
@@ -155,11 +155,11 @@ class NoteAddUpdateActivity : AppCompatActivity(), View.OnClickListener {
 
         val alertDialogBuilder = AlertDialog.Builder(this)
         alertDialogBuilder
-            .setTitle(dialogMessage)
+            .setTitle(dialogTitle)
             .setMessage(dialogMessage)
             .setCancelable(false)
             .setPositiveButton("Ya"){
-                dialog,id->
+                    _, _ ->
                 if(isDialogClose){
                     finish()
                 }else{
@@ -175,7 +175,7 @@ class NoteAddUpdateActivity : AppCompatActivity(), View.OnClickListener {
                 }
             }
             .setNegativeButton("Tidak"){
-                dialog,id -> dialog.cancel()
+                    dialog, _ -> dialog.cancel()
             }
         val alertDialog = alertDialogBuilder.create()
         alertDialog.show()

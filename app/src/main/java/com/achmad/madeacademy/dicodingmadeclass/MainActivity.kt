@@ -40,7 +40,6 @@ class MainActivity : AppCompatActivity() {
         }
         noteHelper = NoteHelper.getInstance(applicationContext)
         noteHelper.open()
-
         if(savedInstanceState == null){
             loadNoteSync()
         }else{
@@ -49,11 +48,6 @@ class MainActivity : AppCompatActivity() {
                 adapter.listNotes = list
             }
         }
-    }
-
-    override fun onSaveInstanceState(outState: Bundle) {
-        super.onSaveInstanceState(outState)
-        outState.putParcelableArrayList(EXTRA_STATE,adapter.listNotes)
     }
 
     private fun loadNoteSync() {
@@ -74,6 +68,11 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        outState.putParcelableArrayList(EXTRA_STATE,adapter.listNotes)
+    }
+
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (data != null) {
@@ -84,7 +83,7 @@ class MainActivity : AppCompatActivity() {
                     rv_notes.smoothScrollToPosition(adapter.itemCount - 1)
                     showSnakeBarMessage("Satu item ditambahkan")
                 }
-                NoteAddUpdateActivity.RESULT_UPDATE ->
+                NoteAddUpdateActivity.REQUEST_UPDATE ->
                     when (resultCode) {
                         NoteAddUpdateActivity.RESULT_UPDATE -> {
                             val note = data.getParcelableExtra<Note>(NoteAddUpdateActivity.EXTRA_NOTE)
@@ -110,6 +109,6 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun showSnakeBarMessage(message: String) {
-        Snackbar.make(rv_notes, message, Snackbar.LENGTH_INDEFINITE).show()
+        Snackbar.make(rv_notes, message, Snackbar.LENGTH_SHORT).show()
     }
 }
