@@ -47,24 +47,42 @@ class DataManagerService : Service(), CoroutineScope {
             var isInsertSuccess: Boolean
 
             try {
-//                mahasiswaHelper.beginTransaction()
-                for (model in mahasiswaModels) {
-                    mahasiswaHelper.insert(model)
-//                    mahasiswaHelper.inserTransaction(model)
-                    progress += progressDiff
-                    publishProgress(progress.toInt())
-                }
-//                mahasiswaHelper.setTransactionSuccess()
-                isInsertSuccess = true
+                mahasiswaHelper.beginTransaction()
+                loop@ for (model in mahasiswaModels) {
+                    when {
+                        job.isCancelled -> break@loop
+                        else->{
+                            mahasiswaHelper.insert(model)
+                            mahasiswaHelper.inserTransaction(model)
+                            progress += progressDiff
+                            publishProgress(progress.toInt())
+                        }
+                    }
 
-                appPreference.firstRun = false
+                }
+
+                when{
+                    job.isCancelled -> {
+                        isInsertSuccess = false
+                        appPreference.firstRun = true
+                        sendMessage(CANCEL_MESSAGE)
+                    }
+                    else ->{
+                        mahasiswaHelper.setTransactionSuccess()
+                        isInsertSuccess = true
+                        appPreference.firstRun = false
+                    }
+                }
+
+
+
             } catch (e: Exception) {
                 Log.e(TAG, "doInBackground: Exception")
                 isInsertSuccess = false
             }
-//            finally {
-//                mahasiswaHelper.endTransaction()
-//            }
+            finally {
+                mahasiswaHelper.endTransaction()
+            }
 
             mahasiswaHelper.close()
             publishProgress(MAX_PROGRESS.toInt())
