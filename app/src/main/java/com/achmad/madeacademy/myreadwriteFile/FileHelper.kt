@@ -1,4 +1,4 @@
-package com.achmad.madeacademy.dicodingmadeclass
+package com.achmad.madeacademy.myreadwriteFile
 
 import android.content.Context
 import android.util.Log

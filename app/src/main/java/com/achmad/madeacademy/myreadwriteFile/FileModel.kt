@@ -1,4 +1,4 @@
-package com.achmad.madeacademy.dicodingmadeclass
+package com.achmad.madeacademy.myreadwriteFile
 
 data class FileModel (
     var filename: String? = null,

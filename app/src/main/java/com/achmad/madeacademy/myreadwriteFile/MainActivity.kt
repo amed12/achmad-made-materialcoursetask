@@ -1,4 +1,4 @@
-package com.achmad.madeacademy.dicodingmadeclass
+package com.achmad.madeacademy.myreadwriteFile
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
