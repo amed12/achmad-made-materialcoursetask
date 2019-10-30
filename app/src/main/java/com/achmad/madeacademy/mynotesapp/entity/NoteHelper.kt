@@ -1,12 +1,12 @@
-package com.achmad.madeacademy.dicodingmadeclass.entity
+package com.achmad.madeacademy.mynotesapp.entity
 
 import android.content.ContentValues
 import android.content.Context
 import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
-import com.achmad.madeacademy.dicodingmadeclass.entity.DatabaseContract.NoteColumns.Companion.TABLE_NAME
-import com.achmad.madeacademy.dicodingmadeclass.entity.DatabaseContract.NoteColumns.Companion._ID
+import com.achmad.madeacademy.mynotesapp.entity.DatabaseContract.NoteColumns.Companion.TABLE_NAME
+import com.achmad.madeacademy.mynotesapp.entity.DatabaseContract.NoteColumns.Companion._ID
 import java.sql.SQLException
 
 class NoteHelper(context: Context) {

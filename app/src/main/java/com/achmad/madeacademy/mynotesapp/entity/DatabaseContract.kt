@@ -1,4 +1,4 @@
-package com.achmad.madeacademy.dicodingmadeclass.entity
+package com.achmad.madeacademy.mynotesapp.entity
 
 import android.provider.BaseColumns
 

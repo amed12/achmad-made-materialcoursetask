@@ -1,13 +1,13 @@
-package com.achmad.madeacademy.dicodingmadeclass
+package com.achmad.madeacademy.mynotesapp
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.achmad.madeacademy.dicodingmadeclass.entity.Note
-import com.achmad.madeacademy.dicodingmadeclass.entity.NoteHelper
-import com.achmad.madeacademy.dicodingmadeclass.helper.MappingHelper
+import com.achmad.madeacademy.mynotesapp.entity.Note
+import com.achmad.madeacademy.mynotesapp.entity.NoteHelper
+import com.achmad.madeacademy.mynotesapp.helper.MappingHelper
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.coroutines.Dispatchers

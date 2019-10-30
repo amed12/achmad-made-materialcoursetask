@@ -1,4 +1,4 @@
-package com.achmad.madeacademy.dicodingmadeclass
+package com.achmad.madeacademy.mynotesapp
 
 import android.app.Activity
 import android.content.Intent
@@ -6,7 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.achmad.madeacademy.dicodingmadeclass.entity.Note
+import com.achmad.madeacademy.mynotesapp.entity.Note
 import kotlinx.android.synthetic.main.item_note.view.*
 
 class NoteAdapter(private val activity: Activity) : RecyclerView.Adapter<NoteAdapter.ViewHolder>() {

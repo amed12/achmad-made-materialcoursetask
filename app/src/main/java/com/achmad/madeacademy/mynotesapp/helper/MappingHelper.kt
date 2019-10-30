@@ -1,8 +1,8 @@
-package com.achmad.madeacademy.dicodingmadeclass.helper
+package com.achmad.madeacademy.mynotesapp.helper
 
 import android.database.Cursor
-import com.achmad.madeacademy.dicodingmadeclass.entity.DatabaseContract
-import com.achmad.madeacademy.dicodingmadeclass.entity.Note
+import com.achmad.madeacademy.mynotesapp.entity.DatabaseContract
+import com.achmad.madeacademy.mynotesapp.entity.Note
 
 object MappingHelper{
     fun mapCursorToArrayList(noteCursor: Cursor): ArrayList<Note>{

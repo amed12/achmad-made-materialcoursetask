@@ -1,4 +1,4 @@
-package com.achmad.madeacademy.dicodingmadeclass
+package com.achmad.madeacademy.mynotesapp
 
 import android.content.ContentValues
 import android.content.Intent
@@ -9,10 +9,10 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
-import com.achmad.madeacademy.dicodingmadeclass.entity.DatabaseContract
-import com.achmad.madeacademy.dicodingmadeclass.entity.DatabaseContract.NoteColumns.Companion.DATE
-import com.achmad.madeacademy.dicodingmadeclass.entity.Note
-import com.achmad.madeacademy.dicodingmadeclass.entity.NoteHelper
+import com.achmad.madeacademy.mynotesapp.entity.DatabaseContract
+import com.achmad.madeacademy.mynotesapp.entity.DatabaseContract.NoteColumns.Companion.DATE
+import com.achmad.madeacademy.mynotesapp.entity.Note
+import com.achmad.madeacademy.mynotesapp.entity.NoteHelper
 import kotlinx.android.synthetic.main.activity_note_add_update.*
 import java.text.SimpleDateFormat
 import java.util.*
