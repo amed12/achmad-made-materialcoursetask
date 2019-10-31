@@ -1,12 +1,16 @@
 package com.achmad.madeacademy.mynotesapp
 
 import android.content.Intent
+import android.database.ContentObserver
+import android.database.Cursor
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Handler
+import android.os.HandlerThread
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.achmad.madeacademy.mynotesapp.entity.DatabaseContract.NoteColumns.Companion.CONTENT_URI
 import com.achmad.madeacademy.mynotesapp.entity.Note
-import com.achmad.madeacademy.mynotesapp.entity.NoteHelper
 import com.achmad.madeacademy.mynotesapp.helper.MappingHelper
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.activity_main.*
@@ -18,7 +22,7 @@ import java.util.ArrayList
 
 class MainActivity : AppCompatActivity() {
     private lateinit var adapter: NoteAdapter
-    private lateinit var noteHelper: NoteHelper
+
 
     companion object{
         private const val EXTRA_STATE = "EXTRA_STATE"
@@ -38,8 +42,18 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this@MainActivity, NoteAddUpdateActivity::class.java)
             startActivityForResult(intent, NoteAddUpdateActivity.REQUEST_ADD)
         }
-        noteHelper = NoteHelper.getInstance(applicationContext)
-        noteHelper.open()
+
+        val handlerThread = HandlerThread("DataObserver")
+        handlerThread.start()
+
+        val handler = Handler(handlerThread.looper)
+
+        val myObserver = object  : ContentObserver(handler){
+            override fun onChange(selfChange: Boolean) {
+                loadNoteSync()
+            }
+        }
+        contentResolver.registerContentObserver(CONTENT_URI, true, myObserver)
         if(savedInstanceState == null){
             loadNoteSync()
         }else{
@@ -51,17 +65,18 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun loadNoteSync() {
-        GlobalScope.launch(Dispatchers.Main){
+        GlobalScope.launch(Dispatchers.Main) {
             progressbar.visibility = View.VISIBLE
-            val defferedNotes = async(Dispatchers.IO){
-                val cursor = noteHelper.queryAll()
+            val deferredNotes = async(Dispatchers.IO) {
+                // CONTENT_URI = content://com.dicoding.picodiploma.mynotesapp/note
+                val cursor = contentResolver?.query(CONTENT_URI, null, null, null, null) as Cursor
                 MappingHelper.mapCursorToArrayList(cursor)
             }
+            val notes = deferredNotes.await()
             progressbar.visibility = View.INVISIBLE
-            val notes = defferedNotes.await()
-            if (notes.size > 0){
-                adapter.listNotes  = notes
-            }else{
+            if (notes.size > 0) {
+                adapter.listNotes = notes
+            } else {
                 adapter.listNotes = ArrayList()
                 showSnakeBarMessage("Tidak ada data saat ini")
             }
@@ -73,40 +88,35 @@ class MainActivity : AppCompatActivity() {
         outState.putParcelableArrayList(EXTRA_STATE,adapter.listNotes)
     }
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        if (data != null) {
-            when (requestCode) {
-                NoteAddUpdateActivity.REQUEST_ADD -> if (resultCode == NoteAddUpdateActivity.RESULT_ADD) {
-                    val note = data.getParcelableExtra<Note>(NoteAddUpdateActivity.EXTRA_NOTE)
-                    adapter.addItem(note)
-                    rv_notes.smoothScrollToPosition(adapter.itemCount - 1)
-                    showSnakeBarMessage("Satu item ditambahkan")
-                }
-                NoteAddUpdateActivity.REQUEST_UPDATE ->
-                    when (resultCode) {
-                        NoteAddUpdateActivity.RESULT_UPDATE -> {
-                            val note = data.getParcelableExtra<Note>(NoteAddUpdateActivity.EXTRA_NOTE)
-                            val position = data.getIntExtra(NoteAddUpdateActivity.EXTRA_POSITION, 0)
-                            adapter.updateItem(position, note)
-                            rv_notes.smoothScrollToPosition(position)
-                            showSnakeBarMessage("Satu item berhasil diubah")
-                        }
-                        NoteAddUpdateActivity.RESULT_DELETE -> {
-                            val position = data.getIntExtra(NoteAddUpdateActivity.EXTRA_POSITION, 0)
-                            adapter.removeItem(position)
-                            showSnakeBarMessage("Satu item berhasil dihapus")
-                        }
-
-                    }
-            }
-        }
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        noteHelper.close()
-    }
+//    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+//        super.onActivityResult(requestCode, resultCode, data)
+//        if (data != null) {
+//            when (requestCode) {
+//                NoteAddUpdateActivity.REQUEST_ADD -> if (resultCode == NoteAddUpdateActivity.RESULT_ADD) {
+//                    val note = data.getParcelableExtra<Note>(NoteAddUpdateActivity.EXTRA_NOTE)
+//                    adapter.addItem(note)
+//                    rv_notes.smoothScrollToPosition(adapter.itemCount - 1)
+//                    showSnakeBarMessage("Satu item ditambahkan")
+//                }
+//                NoteAddUpdateActivity.REQUEST_UPDATE ->
+//                    when (resultCode) {
+//                        NoteAddUpdateActivity.RESULT_UPDATE -> {
+//                            val note = data.getParcelableExtra<Note>(NoteAddUpdateActivity.EXTRA_NOTE)
+//                            val position = data.getIntExtra(NoteAddUpdateActivity.EXTRA_POSITION, 0)
+//                            adapter.updateItem(position, note)
+//                            rv_notes.smoothScrollToPosition(position)
+//                            showSnakeBarMessage("Satu item berhasil diubah")
+//                        }
+//                        NoteAddUpdateActivity.RESULT_DELETE -> {
+//                            val position = data.getIntExtra(NoteAddUpdateActivity.EXTRA_POSITION, 0)
+//                            adapter.removeItem(position)
+//                            showSnakeBarMessage("Satu item berhasil dihapus")
+//                        }
+//
+//                    }
+//            }
+//        }
+//    }
 
     private fun showSnakeBarMessage(message: String) {
         Snackbar.make(rv_notes, message, Snackbar.LENGTH_SHORT).show()

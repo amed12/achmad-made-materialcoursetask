@@ -12,9 +12,7 @@ import kotlinx.android.synthetic.main.item_note.view.*
 class NoteAdapter(private val activity: Activity) : RecyclerView.Adapter<NoteAdapter.ViewHolder>() {
     var listNotes = ArrayList<Note>()
         set(listNotes) {
-            if (listNotes.size > 0) {
-                this.listNotes.clear()
-            }
+            this.listNotes.clear()
             this.listNotes.addAll(listNotes)
             notifyDataSetChanged()
         }
