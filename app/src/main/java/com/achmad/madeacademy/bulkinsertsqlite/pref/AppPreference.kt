@@ -1,4 +1,4 @@
-package com.achmad.madeacademy.dicodingmadeclass.pref
+package com.achmad.madeacademy.bulkinsertsqlite.pref
 
 import android.content.Context
 import android.content.SharedPreferences

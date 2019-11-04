@@ -1,10 +1,10 @@
-package com.achmad.madeacademy.dicodingmadeclass
+package com.achmad.madeacademy.bulkinsertsqlite
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.achmad.madeacademy.dicodingmadeclass.adapter.MahasiswaAdapter
-import com.achmad.madeacademy.dicodingmadeclass.database.MahasiswaHelper
+import com.achmad.madeacademy.bulkinsertsqlite.adapter.MahasiswaAdapter
+import com.achmad.madeacademy.bulkinsertsqlite.database.MahasiswaHelper
 import kotlinx.android.synthetic.main.activity_mahasiswa.*
 
 class MahasiswaActivity : AppCompatActivity() {

@@ -1,4 +1,4 @@
-package com.achmad.madeacademy.dicodingmadeclass
+package com.achmad.madeacademy.bulkinsertsqlite
 
 import android.content.ComponentName
 import android.content.Context
@@ -8,11 +8,11 @@ import android.os.*
 import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.achmad.madeacademy.dicodingmadeclass.DataManagerService.Companion.CANCEL_MESSAGE
-import com.achmad.madeacademy.dicodingmadeclass.DataManagerService.Companion.FAILED_MESSAGE
-import com.achmad.madeacademy.dicodingmadeclass.DataManagerService.Companion.PREPARATION_MESSAGE
-import com.achmad.madeacademy.dicodingmadeclass.DataManagerService.Companion.SUCCESS_MESSAGE
-import com.achmad.madeacademy.dicodingmadeclass.DataManagerService.Companion.UPDATE_MESSAGE
+import com.achmad.madeacademy.bulkinsertsqlite.DataManagerService.Companion.CANCEL_MESSAGE
+import com.achmad.madeacademy.bulkinsertsqlite.DataManagerService.Companion.FAILED_MESSAGE
+import com.achmad.madeacademy.bulkinsertsqlite.DataManagerService.Companion.PREPARATION_MESSAGE
+import com.achmad.madeacademy.bulkinsertsqlite.DataManagerService.Companion.SUCCESS_MESSAGE
+import com.achmad.madeacademy.bulkinsertsqlite.DataManagerService.Companion.UPDATE_MESSAGE
 import kotlinx.android.synthetic.main.activity_main.*
 import java.lang.ref.WeakReference
 

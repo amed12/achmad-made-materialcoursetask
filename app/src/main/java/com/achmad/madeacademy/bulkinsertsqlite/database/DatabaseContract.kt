@@ -1,4 +1,4 @@
-package com.achmad.madeacademy.dicodingmadeclass.database
+package com.achmad.madeacademy.bulkinsertsqlite.database
 
 import android.provider.BaseColumns
 

@@ -1,12 +1,12 @@
-package com.achmad.madeacademy.dicodingmadeclass
+package com.achmad.madeacademy.bulkinsertsqlite
 
 import android.app.Service
 import android.content.Intent
 import android.os.*
 import android.util.Log
-import com.achmad.madeacademy.dicodingmadeclass.database.MahasiswaHelper
-import com.achmad.madeacademy.dicodingmadeclass.model.MahasiswaModel
-import com.achmad.madeacademy.dicodingmadeclass.pref.AppPreference
+import com.achmad.madeacademy.bulkinsertsqlite.database.MahasiswaHelper
+import com.achmad.madeacademy.bulkinsertsqlite.model.MahasiswaModel
+import com.achmad.madeacademy.bulkinsertsqlite.pref.AppPreference
 import kotlinx.coroutines.*
 import java.io.BufferedReader
 import java.io.InputStreamReader

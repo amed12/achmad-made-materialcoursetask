@@ -1,4 +1,4 @@
-package com.achmad.madeacademy.dicodingmadeclass
+package com.achmad.madeacademy.bulkinsertsqlite
 
 import org.junit.Test
 

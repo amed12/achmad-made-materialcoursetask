@@ -1,14 +1,14 @@
-package com.achmad.madeacademy.dicodingmadeclass.database
+package com.achmad.madeacademy.bulkinsertsqlite.database
 
 import android.content.ContentValues
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 import android.provider.BaseColumns._ID
-import com.achmad.madeacademy.dicodingmadeclass.database.DatabaseContract.MahasiswaColumns.Companion.NAMA
-import com.achmad.madeacademy.dicodingmadeclass.database.DatabaseContract.MahasiswaColumns.Companion.NIM
-import com.achmad.madeacademy.dicodingmadeclass.database.DatabaseContract.TABLE_NAME
-import com.achmad.madeacademy.dicodingmadeclass.model.MahasiswaModel
+import com.achmad.madeacademy.bulkinsertsqlite.database.DatabaseContract.MahasiswaColumns.Companion.NAMA
+import com.achmad.madeacademy.bulkinsertsqlite.database.DatabaseContract.MahasiswaColumns.Companion.NIM
+import com.achmad.madeacademy.bulkinsertsqlite.database.DatabaseContract.TABLE_NAME
+import com.achmad.madeacademy.bulkinsertsqlite.model.MahasiswaModel
 import java.sql.SQLException
 
 class MahasiswaHelper(context: Context) {

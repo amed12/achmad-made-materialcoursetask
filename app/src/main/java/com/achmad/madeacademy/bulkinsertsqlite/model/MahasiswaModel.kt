@@ -1,4 +1,4 @@
-package com.achmad.madeacademy.dicodingmadeclass.model
+package com.achmad.madeacademy.bulkinsertsqlite.model
 
 import android.os.Parcelable
 import kotlinx.android.parcel.Parcelize

@@ -1,11 +1,11 @@
-package com.achmad.madeacademy.dicodingmadeclass.adapter
+package com.achmad.madeacademy.bulkinsertsqlite.adapter
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.achmad.madeacademy.dicodingmadeclass.R
-import com.achmad.madeacademy.dicodingmadeclass.model.MahasiswaModel
+import com.achmad.madeacademy.bulkinsertsqlite.R
+import com.achmad.madeacademy.bulkinsertsqlite.model.MahasiswaModel
 import kotlinx.android.synthetic.main.item_mahasiwa_row.view.*
 
 class MahasiswaAdapter : RecyclerView.Adapter<MahasiswaAdapter.MahasiswaHolder>() {
