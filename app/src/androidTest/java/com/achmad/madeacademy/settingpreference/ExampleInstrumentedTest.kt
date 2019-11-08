@@ -1,4 +1,4 @@
-package com.achmad.madeacademy.dicodingmadeclass
+package com.achmad.madeacademy.settingpreference
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4
@@ -19,6 +19,6 @@ class ExampleInstrumentedTest {
     fun useAppContext() {
         // Context of the app under test.
         val appContext = InstrumentationRegistry.getInstrumentation().targetContext
-        assertEquals("com.achmad.madeacademy.dicodingmadeclass", appContext.packageName)
+        assertEquals("com.achmad.madeacademy.settingpreference", appContext.packageName)
     }
 }

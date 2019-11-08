@@ -1,4 +1,4 @@
-package com.achmad.madeacademy.dicodingmadeclass
+package com.achmad.madeacademy.settingpreference
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
