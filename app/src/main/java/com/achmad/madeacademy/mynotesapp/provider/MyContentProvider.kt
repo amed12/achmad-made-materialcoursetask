@@ -73,7 +73,7 @@ class MyContentProvider : ContentProvider() {
         selectionArgs: Array<String>?
     ): Int {
         val updated: Int = when (NOTE_ID){
-            sURiMatcher.match(uri) -> noteHelper.update(uri.lastPathSegment.toString(),values)
+            sURiMatcher.match(uri) -> noteHelper.update(uri.lastPathSegment.toString(), values)
             else -> 0
         }
         context?.contentResolver?.notifyChange(CONTENT_URI, null)
